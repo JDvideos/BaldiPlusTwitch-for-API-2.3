@@ -10,7 +10,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using HarmonyLib; //god im hoping i got the right version of harmony
 using BepInEx.Configuration;
-using MTM101BaldAPI.NameMenu;
 using System.Collections.Generic;
 //this code is reused from BaldiMP, lol
 
@@ -57,10 +56,9 @@ namespace BBPlusTwitch
                 TwitchManager.CooldownEnabled = true;
             }
             CreateManagers();
-            NameMenuManager.AllowContinue(true);
         }
 
-        public static void SetVanilla(MenuObject obj)
+        /*public static void SetVanilla(MenuObject obj)
         {
             SetFunnyMode(TwitchMode.Vanilla, 0f);
         }
@@ -110,7 +108,7 @@ namespace BBPlusTwitch
         {
             SettingsManager.ShowVotes = !SettingsManager.ShowVotes;
             return SettingsManager.ShowVotes;
-        }
+        }*/
 
 
 
@@ -162,7 +160,7 @@ namespace BBPlusTwitch
 
             Harmony harmony = new Harmony("mtm101.rulerp.bbplus.balditwitch");
 
-            NameMenuManager.AddPreStartPage("mandatorytwitchshits",true);
+            /*NameMenuManager.AddPreStartPage("mandatorytwitchshits",true);
             List<MenuObject> Objects = new List<MenuObject>();
             Objects.Add(new MenuGeneric("startvanilla", "Vanilla", SetVanilla));
             Objects.Add(new MenuGeneric("startspeedy", "Speedy", SetSpeedy));
@@ -180,10 +178,12 @@ namespace BBPlusTwitch
             Objects.Add(new MenuOption("showvotes", "Show Votes", SettingsManager.ShowVotes, ToggleVotes));
             Objects.Add(new MenuOption("togglefairoffline", "Balanced Offline", SettingsManager.OfflineUseWeighted, ToggleWeights));
             NameMenuManager.AddToPageBulk("mtm101twitchoptions",Objects);
-            NameMenuManager.AddToPage("options",new MenuFolder("totwitchoptions","BB+ Twitch","mtm101twitchoptions"));
+            NameMenuManager.AddToPage("options",new MenuFolder("totwitchoptions","BB+ Twitch","mtm101twitchoptions"));*/
 
 
             harmony.PatchAll();
+
+            SetFunnyMode(TwitchMode.Vanilla, 0f); // No options so hardcoded LOL
 
             #if BBCR
             TwitchMode modtochangeto = (TwitchMode)Enum.Parse(typeof(TwitchMode), DefaultMode.Value);
